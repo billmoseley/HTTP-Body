@@ -286,7 +286,8 @@ sub handler {
     }
 
     if ( $part->{fh} && ( my $length = length( $part->{data} ) ) ) {
-        $part->{fh}->write( substr( $part->{data}, 0, $length, '' ), $length );
+        $part->{fh}->write( substr( $part->{data}, 0, $length, '' ), $length )
+            || die "Failed to write $length bytes to temp file '$part->{tempname}': $!";
     }
 
     if ( $part->{done} ) {

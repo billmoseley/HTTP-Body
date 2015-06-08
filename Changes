@@ -3,6 +3,10 @@ This file documents the revision history for Perl extension HTTP::Body.
 {{$NEXT}}
         - Fix for the fix..... don't ask
 
+        - Die if $fh->write calls in MultiPart and OctetStream return false.
+          For example, if the temp partition fills.
+
+
 1.21      2015-01-29 04:48:58+01:00 Europe/Berlin
 	- Fix for failing test if Plack is not installed
 

@@ -34,7 +34,9 @@ sub spin {
     }
 
     if ( my $length = length( $self->{buffer} ) ) {
-        $self->body->write( substr( $self->{buffer}, 0, $length, '' ), $length );
+        my $fh = $self->body;
+        $fh->write( substr( $self->{buffer}, 0, $length, '' ), $length )
+            || die "Failed to write $length bytes to temp file '$fh': $!";
     }
 
     if ( $self->length == $self->content_length ) {
